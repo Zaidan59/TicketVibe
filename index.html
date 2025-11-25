@@ -9,7 +9,9 @@
   <body>
     <!-- NAVBAR -->
     <nav class="top-nav">
+      <a href="index.html">
       <div class="logo">TicketVibe</div>
+      </a>
 
       <div class="search" role="search">
         <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
@@ -36,22 +38,25 @@
           Beli tiket konser favoritmu dan jelajahi event musik paling hype tahun
           ini.
         </p>
-        <a class="btn-primary" href="#events">Jelajahi Event</a>
+        <a class="btn-hero" href="#events">Jelajahi Event</a>
       </div>
     </section>
 
+    <main>
     <!-- TRENDING EVENTS -->
     <h2 class="section-title">Trending Events</h2>
-    <div class="event-grid" id="trending-events"></div>
+    <div class="event" id="trending-events"></div>
 
     <!-- KONSER EVENTS -->
     <h2 id="events" class="section-title">Konser Events</h2>
-    <div class="event-grid" id="konser-events"></div>
+    <div class="event" id="konser-events"></div>
 
+    </main>
     <!-- FOOTER -->
     <footer>
       <p>© 2025 TicketVibe — All rights reserved.</p>
     </footer>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

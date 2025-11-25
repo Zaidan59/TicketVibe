@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Event - TicketVibe</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="top-nav">
+      <a href="index.html">
+      <div class="logo">TicketVibe</div>
+      </a>
+      <div class="search" role="search">
+        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+      </div>
+
+      <div class="nav-links">
+        <button class="btn-login" aria-label="Masuk">Masuk</button>
+        <button class="btn-signup" aria-label="Daftar">Daftar</button>
+      </div>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <main>
+      <!-- BACK BUTTON -->
+      <div class="back-button-container">
+        <a href="index.html" class="btn-back">← Kembali</a>
+      </div>
+
+      <!-- EVENT DETAIL -->
+      <section class="event-detail" id="event-detail">
+        <div class="detail-container">
+          <div class="detail-image">
+            <img id="detail-img" src="" alt="Event Image">
+            <span class="detail-category" id="detail-category"></span>
+          </div>
+          
+          <div class="detail-content">
+            <h1 class="detail-title" id="detail-title"></h1>
+            <p class="detail-artist" id="detail-artist"></p>
+            
+            <div class="detail-info-grid">
+              <div class="info-item">
+                <span class="info-icon">📅</span>
+                <div>
+                  <p class="info-label">Tanggal</p>
+                  <p class="info-value" id="detail-date"></p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div>
+                  <p class="info-label">Lokasi</p>
+                  <p class="info-value" id="detail-location"></p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">💰</span>
+                <div>
+                  <p class="info-label">Harga Mulai Dari</p>
+                  <p class="info-value" id="detail-price"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-description">
+              <h3>Tentang Event</h3>
+              <p id="detail-desc"></p>
+            </div>
+
+            <div class="detail-actions">
+              <button class="btn-buy-ticket">Beli Tiket Sekarang</button>
+              <button class="btn-share">Bagikan Event</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 TicketVibe — All rights reserved.</p>
+    </footer>
+    
+    <script src="auth.js"></script>
+    <script src="detail.js"></script>
+  </body>
+</html>
