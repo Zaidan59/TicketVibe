@@ -1,0 +1,343 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Inter", sans-serif;
+  background: #0f0f13;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  padding: 18px 40px;
+  background: #15151c;
+  border-bottom: 1px solid #262631;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* SEARCH (navbar) */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #262631;
+  padding: 6px 10px;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 640px;
+  margin: 0 20px;
+}
+.search input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 8px 6px;
+  font-size: 14px;
+}
+.search input::placeholder {
+  color: #9a9ab3;
+}
+.search .search-btn {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+/* Nav actions */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-left: auto;
+}
+
+.btn-login,
+.btn-signup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  min-height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease,
+    background 0.12s ease, border-color 0.12s ease;
+  text-decoration: none;
+  line-height: 1;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.btn-login {
+  background: linear-gradient(90deg, #6a5dfc, #7b6fff);
+  color: #fff;
+  border: 1px solid rgba(106, 93, 252, 0.24);
+}
+.btn-login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(106, 93, 252, 0.14);
+}
+.btn-login:active {
+  transform: translateY(-1px);
+}
+.btn-login:focus {
+  outline: 3px solid rgba(106, 93, 252, 0.18);
+  outline-offset: 3px;
+}
+.btn-signup {
+  background: transparent;
+  color: #8c82ff;
+  border: 1px solid rgba(106, 93, 252, 0.22);
+}
+.btn-signup:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(106, 93, 252, 0.14);
+}
+.btn-signup:active {
+  transform: translateY(-1px);
+}
+.btn-signup:focus {
+  outline: 3px solid rgba(140, 129, 252, 0.18);
+  outline-offset: 3px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(102, 126, 234, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    gap: 0;
+    display: none;
+    padding: 1rem 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  }
+  .search {
+    display: none;
+  }
+}
+
+/* (button styles for signup are defined above with .btn-signup) */
+
+@media (max-width: 600px) {
+  .nav-links .btn-login {
+    padding: 6px 10px;
+  }
+  .btn-signup {
+    padding: 6px 10px;
+  }
+}
+
+/* HERO */
+.hero {
+  height: 420px;
+  background: url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1500&fit=crop")
+    center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 700px;
+  height: 100px;
+}
+.hero h1 {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.hero p {
+  font-size: 18px;
+  color: #dcdce5;
+  margin-bottom: 22px;
+}
+.btn-primary {
+  padding: 14px 32px;
+  background: #6a5dfc;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: #7b6fff;
+}
+
+/* SECTION TITLE */
+.section-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 40px 0 20px;
+  text-align: center;
+}
+
+/* EVENT GRID */
+.event-grid {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.event-card {
+  background: #1b1b24;
+  border-radius: 14px;
+  border: 1px solid #262631;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-img {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.event-info {
+  padding: 18px;
+}
+.event-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.event-date {
+  color: #c7c7d2;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.event-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #00d4b4;
+}
+
+/* Ensure event info stacks vertically and meta row aligns price and actions */
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  gap: 12px;
+}
+.event-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Small variant for buy button inside card */
+.btn-primary.small {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+/* Secondary button used for Detail */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* FOOTER */
+footer {
+  margin-top: 60px;
+  background: #15151c;
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid #262631;
+}
+footer p {
+  color: #9a9ab3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+}

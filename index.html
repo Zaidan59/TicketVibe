@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicketVibe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="top-nav">
+      <div class="logo">TicketVibe</div>
+
+      <div class="search" role="search">
+        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+      </div>
+
+      <div class="nav-links">
+        <button class="btn-login" aria-label="Masuk">Masuk</button>
+        <button class="btn-signup" aria-label="Daftar">Daftar</button>
+      </div>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Temukan Konser Terbaik di Sekitarmu</h1>
+        <p>
+          Beli tiket konser favoritmu dan jelajahi event musik paling hype tahun
+          ini.
+        </p>
+        <a class="btn-primary" href="#events">Jelajahi Event</a>
+      </div>
+    </section>
+
+    <!-- TRENDING EVENTS -->
+    <h2 class="section-title">Trending Events</h2>
+    <div class="event-grid" id="trending-events"></div>
+
+    <!-- KONSER EVENTS -->
+    <h2 id="events" class="section-title">Konser Events</h2>
+    <div class="event-grid" id="konser-events"></div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 TicketVibe — All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
