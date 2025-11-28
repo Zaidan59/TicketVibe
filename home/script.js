@@ -2,14 +2,26 @@
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 if (hamburger && navLinks) {
+    const mobileSearch = document.createElement('div');
+    mobileSearch.className = 'search search-mobile';
+    mobileSearch.setAttribute('role', 'search');
+    mobileSearch.innerHTML = `
+        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+    `;
+    
     hamburger.addEventListener('click', () => {
         const opened = navLinks.classList.toggle('open');
         hamburger.classList.toggle('active');
         hamburger.setAttribute('aria-expanded', opened ? 'true' : 'false');
+        
+        if (opened && !navLinks.querySelector('.search-mobile')) {
+            navLinks.insertBefore(mobileSearch, navLinks.firstChild);
+        }
     });
 }
 
-// Data dummy untuk event konser
+// Data untuk event
 const trendingEvents = [
     {
         id: 1,
@@ -136,13 +148,13 @@ const konserEvents = [
     }
 ];
 
-// Function untuk render event cards
+// Function untuk render event
 function renderEvents(events, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     container.innerHTML = events.map(event => `
-        <div class="event-card" onclick="window.location.href='detail.html?id=${event.id}'" style="cursor: pointer;">
+        <div class="event-card" onclick="window.location.href='../detail/detail.html?id=${event.id}'" style="cursor: pointer;">
             <div class="event-image">
                 <img src="${event.image}" alt="${event.title}">
                 <span class="event-category">${event.category}</span>
@@ -168,6 +180,3 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEvents(konserEvents, 'konser-events');
     updateNavbar();
 });
-
-
-

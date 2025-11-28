@@ -1,0 +1,148 @@
+ <!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - TicketVibe</title>
+    <link rel="stylesheet" href="../home/style.css" />
+    <link rel="stylesheet" href="checkout.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="top-nav">
+      <a href="../home/index.html">
+        <div class="logo">TicketVibe</div>
+      </a>
+      <div class="nav-links">
+        <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+        <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+      </div>
+    </nav>
+
+    <main class="checkout-container">
+      <div class="back-button-container">
+        <a href="#" class="btn-back" id="backBtn">← Kembali</a>
+      </div>
+
+      <h1>Checkout & Pembayaran</h1>
+
+      <!-- Ringkasan Pesanan -->
+      <section class="order-summary-section">
+        <h2>Ringkasan Pesanan</h2>
+        <div class="order-card">
+          <div class="order-header">
+            <h3 id="eventTitle">Loading...</h3>
+            <span class="event-category" id="eventCategory"></span>
+          </div>
+          
+          <div class="order-details" id="orderDetails">
+            <!-- Akan diisi oleh JavaScript -->
+          </div>
+          
+          <div class="order-total">
+            <div class="total-row">
+              <span class="total-label">Total Tiket:</span>
+              <span class="total-value" id="totalTickets">0</span>
+            </div>
+            <div class="total-row grand-total">
+              <span class="total-label">Total Harga:</span>
+              <span class="total-value" id="totalPrice">Rp 0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Informasi Pembeli -->
+      <section class="buyer-info-section">
+        <h2>Informasi Pembeli</h2>
+        <form class="buyer-form">
+          <div class="form-group">
+            <label for="buyerName">Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="buyerName" name="buyerName" placeholder="Masukkan nama lengkap" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="buyerEmail">Email <span class="required">*</span></label>
+            <input type="email" id="buyerEmail" name="buyerEmail" placeholder="email@example.com" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="buyerPhone">Nomor Telepon <span class="required">*</span></label>
+            <input type="tel" id="buyerPhone" name="buyerPhone" placeholder="08xxxxxxxxxx" required />
+          </div>
+        </form>
+      </section>
+
+      <!-- Metode Pembayaran -->
+      <section class="payment-method-section">
+        <h2>Pilih Metode Pembayaran</h2>
+        <div class="payment-methods">
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="bank_transfer" />
+            <div class="method-content">
+              <div class="method-icon">🏦</div>
+              <div class="method-info">
+                <strong>Transfer Bank</strong>
+                <p class="method-desc">BCA, BNI, Mandiri, BRI</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="ewallet" />
+            <div class="method-content">
+              <div class="method-icon">💳</div>
+              <div class="method-info">
+                <strong>E-Wallet</strong>
+                <p class="method-desc">GoPay, OVO, Dana, ShopeePay</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="credit_card" />
+            <div class="method-content">
+              <div class="method-icon">💳</div>
+              <div class="method-info">
+                <strong>Kartu Kredit/Debit</strong>
+                <p class="method-desc">Visa, Mastercard, JCB</p>
+              </div>
+            </div>
+          </label>
+
+          <label class="payment-method">
+            <input type="radio" name="paymentMethod" value="qris" />
+            <div class="method-content">
+              <div class="method-icon">📱</div>
+              <div class="method-info">
+                <strong>QRIS</strong>
+                <p class="method-desc">Scan QR untuk bayar</p>
+              </div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- Syarat & Ketentuan -->
+      <section class="terms-section">
+        <label class="terms-checkbox">
+          <input type="checkbox" id="agreeTerms" />
+          <span>Saya telah membaca dan menyetujui <a href="#" class="terms-link">Syarat & Ketentuan</a> serta <a href="#" class="terms-link">Kebijakan Privasi</a></span>
+        </label>
+      </section>
+
+      <!-- Tombol Bayar -->
+      <div class="checkout-actions">
+        <button class="btn-checkout" id="btnProceedPayment">Bayar Sekarang</button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 TicketVibe — All rights reserved.</p>
+    </footer>
+
+    <script src="../home/common.js"></script>
+    <script src="checkout.js"></script>
+  </body>
+</html>
