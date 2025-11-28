@@ -1,0 +1,284 @@
+/* History Container */
+.history-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+}
+
+.back-button-container {
+    margin-bottom: 20px;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(106, 93, 252, 0.1);
+    border: 1px solid rgba(106, 93, 252, 0.3);
+    border-radius: 8px;
+    color: #8c82ff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: rgba(106, 93, 252, 0.2);
+    border-color: rgba(106, 93, 252, 0.5);
+    transform: translateX(-4px);
+}
+
+.history-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    background: linear-gradient(135deg, #6a5dfc 0%, #8c82ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* bagiann kosong */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state h2 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: #a0a0b0;
+    margin-bottom: 32px;
+}
+
+.btn-browse {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #6a5dfc 0%, #8c82ff 100%);
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-browse:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(106, 93, 252, 0.4);
+}
+
+/* list pembelian */
+.purchase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.purchase-card {
+    background: rgba(21, 21, 28, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s;
+}
+
+.purchase-card:hover {
+    border-color: rgba(106, 93, 252, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(106, 93, 252, 0.2);
+}
+
+.purchase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.purchase-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.purchase-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 14px;
+    color: #a0a0b0;
+}
+
+.purchase-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.status-badge.success {
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.status-badge.cancelled {
+    background: rgba(220, 53, 69, 0.15);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* Ticket Details */
+.ticket-details {
+    margin-bottom: 20px;
+}
+
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.ticket-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ticket-type {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.ticket-quantity {
+    font-size: 14px;
+    color: #a0a0b0;
+}
+
+.ticket-price {
+    font-weight: 700;
+    color: #8c82ff;
+    font-size: 16px;
+}
+
+/* Footer */
+.purchase-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.total-label {
+    font-size: 14px;
+    color: #a0a0b0;
+}
+
+.total-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.purchase-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-detail {
+    padding: 10px 20px;
+    background: rgba(106, 93, 252, 0.1);
+    border: 1px solid rgba(106, 93, 252, 0.3);
+    border-radius: 8px;
+    color: #8c82ff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.btn-detail:hover {
+    background: rgba(106, 93, 252, 0.2);
+    border-color: rgba(106, 93, 252, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .history-container {
+        margin-top: 80px;
+        padding: 0 16px;
+    }
+
+    .history-container h1 {
+        font-size: 24px;
+    }
+
+    .purchase-card {
+        padding: 20px 16px;
+    }
+
+    .purchase-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .purchase-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .purchase-footer {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .purchase-actions {
+        width: 100%;
+    }
+
+    .btn-detail {
+        flex: 1;
+        text-align: center;
+    }
+
+    .total-amount {
+        font-size: 20px;
+    }
+}

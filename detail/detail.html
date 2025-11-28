@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Event - TicketVibe</title>
+    <link rel="stylesheet" href="../home/style.css" />
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="top-nav">
+      <a href="../home/index.html">
+      <div class="logo">TicketVibe</div>
+      </a>
+      <div class="search" role="search">
+        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+      </div>
+
+      <div class="nav-links">
+        <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+        <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+      </div>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <main>
+      <div class="back-button-container">
+        <a href="../home/index.html" class="btn-back">← Kembali</a>
+      </div>
+
+      <!-- event detail -->
+      <section class="event-detail" id="event-detail">
+        <div class="detail-container">
+          <div class="detail-left">
+            <div class="detail-image">
+              <img id="detail-img" src="" alt="Event Image">
+              <span class="detail-category" id="detail-category"></span>
+            </div>
+            
+            <h1 class="detail-title" id="detail-title"></h1>
+            <p class="detail-artist" id="detail-artist"></p>
+            
+            <div class="detail-info-grid">
+              <div class="info-item">
+                <span class="info-icon">📅</span>
+                <div>
+                  <p class="info-label">Tanggal</p>
+                  <p class="info-value" id="detail-date"></p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div>
+                  <p class="info-label">Lokasi</p>
+                  <p class="info-value" id="detail-location"></p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">💰</span>
+                <div>
+                  <p class="info-label">Harga Mulai Dari</p>
+                  <p class="info-value" id="detail-price"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="detail-description">
+              <h3>Tentang Event</h3>
+              <p id="detail-desc"></p>
+            </div>
+            
+            <div class="detail-terms">
+              <h3>Syarat & Ketentuan</h3>
+              <ul class="terms-list">
+                <li>Tiket yang sudah dibeli tidak dapat dikembalikan atau ditukar</li>
+                <li>Pembeli wajib membawa identitas diri (KTP/SIM/Paspor) yang sesuai dengan nama pada tiket</li>
+                <li>Dilarang membawa makanan dan minuman dari luar area venue</li>
+                <li>Pengunjung wajib menjaga ketertiban dan keamanan selama acara berlangsung</li>
+                <li>Panitia berhak menolak atau mengeluarkan pengunjung yang melanggar aturan</li>
+                <li>Anak di bawah 12 tahun wajib didampingi orang tua/wali</li>
+                <li>Dilarang membawa barang berbahaya, senjata tajam, atau bahan yang mudah terbakar</li>
+                <li>Jadwal acara dapat berubah sewaktu-waktu sesuai kebijakan penyelenggara</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="detail-content">
+            <!-- Bagian Pemilihan Tiket -->
+            <div class="ticket-selection-container">
+              <h3>Pilih Tiket</h3>
+              <div class="ticket-types" id="ticketTypes">
+                <!-- jenis tiket digenerate oleh JavaScript -->
+              </div>
+              <div class="ticket-summary">
+                <div class="summary-row">
+                  <span class="summary-label">Total Tiket:</span>
+                  <span class="summary-value" id="totalTickets">0</span>
+                </div>
+                <div class="summary-row total-price-row">
+                  <span class="summary-label">Total Harga:</span>
+                  <span class="summary-value" id="totalPrice">Rp 0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-actions">
+              <button class="btn-buy-ticket" id="buyTicketBtn">Beli Tiket Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>     
+
+    <!-- footer -->
+    <footer>
+      <p>© 2025 TicketVibe — All rights reserved.</p>
+    </footer>
+    
+    <script src="../home/common.js"></script>
+    <script src="detail.js"></script>
+  </body>
+</html>
