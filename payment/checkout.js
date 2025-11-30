@@ -26,15 +26,20 @@ if (!orderData || !orderData.eventId) {
     // Pre-fill form jika sudah login
     if (isUserLoggedIn()) {
         const userEmail = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail');
-        if (userEmail) {
-            document.addEventListener('DOMContentLoaded', () => {
+        const userName = localStorage.getItem('userName') || sessionStorage.getItem('userName');
+        const userPhone = localStorage.getItem('userPhone') || sessionStorage.getItem('userPhone');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (userEmail) {
                 document.getElementById('buyerEmail').value = userEmail;
-                
-                // Auto-fill nama dari email jika ada
-                const userName = userEmail.split('@')[0];
-                document.getElementById('buyerName').value = userName.charAt(0).toUpperCase() + userName.slice(1);
-            });
-        }
+            }
+            if (userName) {
+                document.getElementById('buyerName').value = userName;
+            }
+            if (userPhone) {
+                document.getElementById('buyerPhone').value = userPhone;
+            }
+        });
     }
 }
 
@@ -153,7 +158,7 @@ function setupEventListeners() {
     }
 }
 
-// Function untuk tampilkan notifikasi, tutup notifikasi, tampilkan toast
+// Function untuk tampilkan nomor random
 function generateOrderNumber() {
     const prefix = 'TV';
     const timestamp = Date.now().toString().slice(-8);

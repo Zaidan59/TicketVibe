@@ -362,7 +362,7 @@ function renderTicketTypes() {
         cardHeader.appendChild(ticketInfo);
         cardHeader.appendChild(quantityControl);
         
-        // Buat bagian manfaat jika tersedia
+        // Buat bagian benefit jika tersedia
         if (ticket.benefits && ticket.benefits.length > 0) {
             const benefitsDiv = document.createElement('div');
             benefitsDiv.className = 'ticket-benefits';

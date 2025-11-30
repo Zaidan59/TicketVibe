@@ -13,18 +13,20 @@ if (loginForm) {
             return;
         }
 
-        // Simulasi login
+        // login
         console.log('Login attempt:', { email, password, remember });
         
-        // Simpan session jika remember me dicentang
-        const userName = email.split('@')[0];
+        // Ambil nama lengkap yang tersimpan dari registrasi
+        const storedName = localStorage.getItem('userName');
+        const userName = storedName || email.split('@')[0];
+        
+        // Simpan session
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('isLoggedIn', 'true');
+        
         if (remember) {
-            localStorage.setItem('userEmail', email);
-            localStorage.setItem('userName', userName);
-        } else {
-            sessionStorage.setItem('isLoggedIn', 'true');
-            sessionStorage.setItem('userName', userName);
-            sessionStorage.setItem('userEmail', email);
+            localStorage.setItem('rememberMe', 'true');
         }
 
         showToast('Login berhasil!', 'success');
@@ -43,7 +45,7 @@ if (loginForm) {
     });
 }
 
-// Register Form Handler
+// Register Form
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
     registerForm.addEventListener('submit', function(e) {
@@ -94,8 +96,13 @@ if (registerForm) {
             return;
         }
 
-        // Simulasi registrasi
+        // Simulasi registrasi - simpan data user
         console.log('Register attempt:', { fullname, email, phone, password });
+        
+        // Simpan nama lengkap dan email untuk digunakan saat login
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userName', fullname);
+        localStorage.setItem('userPhone', phone);
         
         showToast('Registrasi berhasil! Silakan login.', 'success');
         

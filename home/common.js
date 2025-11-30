@@ -135,17 +135,17 @@ function logout() {
         'Apakah Anda yakin ingin keluar dari akun Anda?',
         'warning',
         () => {
+            // Clear data setelah user confirm
             localStorage.removeItem('userEmail');
             localStorage.removeItem('userName');
-            localStorage.removeItem('selectedEventId');
-            sessionStorage.removeItem('isLoggedIn');
-            sessionStorage.removeItem('userName');
-            sessionStorage.removeItem('userEmail');
-            sessionStorage.removeItem('redirectAfterLogin');
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userPhone');
+            
             showToast('Berhasil logout', 'success');
+            
             setTimeout(() => {
-                location.reload();
-            }, 1000);
+                window.location.href = '../home/index.html';
+            }, 500);
         }
     );
 }
