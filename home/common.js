@@ -111,22 +111,79 @@ function showToast(message, type = 'success') {
 
 // Function untuk cek status login
 function isUserLoggedIn() {
-    return localStorage.getItem('userEmail') !== null || sessionStorage.getItem('isLoggedIn') === 'true';
+    // Cek localStorage saja karena kita menyimpan semua data di localStorage
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const hasUserEmail = localStorage.getItem('userEmail') !== null;
+    
+    return isLoggedIn && hasUserEmail;
 }
 
 // Function untuk update navbar berdasarkan status login
 function updateNavbar() {
-    const navLinks = document.querySelector('.nav-links');
-    if (navLinks && isUserLoggedIn()) {
-        const userName = localStorage.getItem('userName') || sessionStorage.getItem('userName') || 'User';
+    const navMenu = document.querySelector('.nav-menu');
+    if (!navMenu) return;
+    
+    if (isUserLoggedIn()) {
+        const userName = localStorage.getItem('userName') || 'User';
         
-        navLinks.innerHTML = `
-            <span class="nav-greeting">Halo, ${userName}</span>
-            <a href="../history/history.html" class="nav-history">Riwayat</a>
-            <button class="btn-logout" aria-label="Keluar" onclick="logout()">Keluar</button>
-        `;
+        // Hapus tombol login/daftar
+        const navButtons = navMenu.querySelector('.nav-buttons');
+        if (navButtons) {
+            navButtons.innerHTML = `
+            
+            <div id="profileDropdownArea" class="profile-dropdown-area"></div>
+            `;
+            // Render dropdown area content setelah memasang struktur nav
+            renderProfileDropdown();
+        }
     }
 }
+
+function renderProfileDropdown() {
+    const dropdownArea = document.getElementById('profileDropdownArea');
+    if (!dropdownArea) return;
+
+    const userName = localStorage.getItem('userName') || 'User';
+
+    dropdownArea.innerHTML = `
+        <button class="profile-btn" aria-label="Profil" onclick="toggleDropdown()">
+            <img src="https://e7.pngegg.com/pngimages/343/677/png-clipart-computer-icons-user-profile-login-my-account-icon-heroes-black-thumbnail.png" alt="Avatar ${userName}" class="profile-avatar" />
+        <span class="nav-greeting">Halo, ${userName}</span></button>
+        <div id="myDropdown" class="dropdown-content" aria-hidden="true">
+            <a href="../profile/profile.html">👤 Profil Saya</a>
+            <a href="../history/history.html">📜 Riwayat</a>
+            <a href="../create/create.html">➕ Buat Event</a>
+            <a href="#" onclick="logout()">🚪 Keluar</a>
+        </div>
+    `;
+}
+
+function toggleDropdown() {
+    const dd = document.getElementById("myDropdown");
+    if (!dd) return;
+    dd.classList.toggle("show");
+    dd.setAttribute('aria-hidden', !dd.classList.contains('show'));
+}
+
+// Menutup dropdown jika pengguna mengklik di luar menu
+window.addEventListener('click', function(event) {
+    // jika klik bukan pada tombol profile atau di dalam dropdown, tutup dropdown
+    if (!event.target.closest('.profile-btn') && !event.target.closest('.dropdown-content')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+                openDropdown.setAttribute('aria-hidden', 'true');
+            }
+        }
+    }
+});
+
+// Panggil fungsi render saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    updateNavbar();
+});
 
 // Function untuk logout
 function logout() {
@@ -135,11 +192,12 @@ function logout() {
         'Apakah Anda yakin ingin keluar dari akun Anda?',
         'warning',
         () => {
-            // Clear data setelah user confirm
+            // Clear semua data user
             localStorage.removeItem('userEmail');
             localStorage.removeItem('userName');
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userPhone');
+            localStorage.removeItem('rememberMe');
             
             showToast('Berhasil logout', 'success');
             

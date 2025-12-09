@@ -1,23 +1,11 @@
 // hamburger 
 const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-if (hamburger && navLinks) {
-    const mobileSearch = document.createElement('div');
-    mobileSearch.className = 'search search-mobile';
-    mobileSearch.setAttribute('role', 'search');
-    mobileSearch.innerHTML = `
-        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
-        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
-    `;
-    
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
-        const opened = navLinks.classList.toggle('open');
         hamburger.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', opened ? 'true' : 'false');
-        
-        if (opened && !navLinks.querySelector('.search-mobile')) {
-            navLinks.insertBefore(mobileSearch, navLinks.firstChild);
-        }
+        navMenu.classList.toggle('open');
     });
 }
 
@@ -25,7 +13,7 @@ if (hamburger && navLinks) {
 const allEvents = [
     {
         id: 1,
-        title: "Taylor Swift - The Eras Tour",
+        title: "Taylor Swift: The Eras Tour",
         artist: "Taylor Swift",
         date: "15 Januari 2026",
         location: "Jakarta International Stadium",
@@ -240,18 +228,68 @@ console.log('All events count:', allEvents.length);
 
 // Tampilkan detail event
 if (event) {
+    // Set main image and title
     document.getElementById('detail-img').src = event.image;
     document.getElementById('detail-img').alt = event.title;
     document.getElementById('detail-category').textContent = event.category;
     document.getElementById('detail-title').textContent = event.title;
     document.getElementById('detail-artist').textContent = event.artist;
+    
+    // Set event info
     document.getElementById('detail-date').textContent = event.date;
+    const timeEl = document.getElementById('detail-time');
+    if (timeEl) timeEl.textContent = '19:00 - 23:00 WIB';
+    
     document.getElementById('detail-location').textContent = event.location;
-    document.getElementById('detail-price').textContent = event.price;
+    const addressEl = document.getElementById('detail-address');
+    if (addressEl) addressEl.textContent = event.location;
+    
+    // Set ticket availability
+    const totalTickets = event.tickets.reduce((sum, t) => sum + t.stock, 0);
+    const availableEl = document.getElementById('detail-available');
+    const totalEl = document.getElementById('detail-total');
+    if (availableEl) availableEl.textContent = `${totalTickets} tiket`;
+    if (totalEl) totalEl.textContent = `dari ${totalTickets} tiket`;
+    
+    // Set organizer avatar
+    const organizerAvatar = document.getElementById('organizer-avatar');
+    if (organizerAvatar) {
+        organizerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(event.artist)}&background=006666&color=fff&size=50`;
+    }
+    
+    // Set description
     document.getElementById('detail-desc').textContent = event.description;
     
+    // Generate gallery thumbnails
+    const galleryContainer = document.getElementById('event-gallery');
+    if (galleryContainer) {
+        // Create 4 thumbnail images (using the main image as variations)
+        const galleryImages = [event.image, event.image, event.image, event.image];
+        galleryImages.forEach((imgSrc, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = imgSrc;
+            thumb.className = 'gallery-thumb' + (index === 0 ? ' active' : '');
+            thumb.alt = `Thumbnail ${index + 1}`;
+            thumb.onclick = () => changeImage(imgSrc, thumb);
+            galleryContainer.appendChild(thumb);
+        });
+    }
+    
+    // Generate benefits list
+    const benefitsContainer = document.getElementById('event-benefits');
+    if (benefitsContainer) {
+        const benefits = [
+            '✅ Pertunjukan musik berkelas dunia',
+            '✅ Fasilitas venue yang nyaman',
+            '✅ Akses ke area food court',
+            '✅ Parkir gratis untuk semua pengunjung',
+            '✅ Photo booth dan Instagram-worthy spots'
+        ];
+        benefitsContainer.innerHTML = benefits.map(b => `<li>${b}</li>`).join('');
+    }
+    
     // Update page title
-    document.title = `${event.title} - TicketVibe`;
+    document.title = `${event.title} - Evora`;
     
     // Render ticket types 
     setTimeout(() => {
@@ -259,143 +297,35 @@ if (event) {
     }, 100);
 } else {
     // Jika event tidak ditemukan, redirect ke home
-    alert('Event not found! Redirecting to home...');
-    window.location.href = '../home/index.html';
+    showNotification(
+        'Event Tidak Ditemukan',
+        'Event yang Anda cari tidak tersedia. Anda akan diarahkan ke halaman home.',
+        'error',
+        () => {
+            window.location.href = '../home/index.html';
+        }
+    );
 }
 
-// Object untuk menyimpan jumlah tiket yang dipilih
+// Function to change main image
+function changeImage(src, thumbElement) {
+    const mainImage = document.getElementById('detail-img');
+    if (mainImage) {
+        mainImage.src = src;
+    }
+    
+    // Update active thumbnail
+    const allThumbs = document.querySelectorAll('.gallery-thumb');
+    allThumbs.forEach(thumb => thumb.classList.remove('active'));
+    if (thumbElement) {
+        thumbElement.classList.add('active');
+    }
+}
+
+// Object untuk menyimpan jumlah tiket yang dipilih per jenis
 let selectedTickets = {};
 
-// Function untuk format harga
-function formatPrice(price) {
-    return 'Rp ' + price.toLocaleString('id-ID');
-}
-
-// Function untuk render ticket types
-function renderTicketTypes() {
-    const ticketTypesContainer = document.getElementById('ticketTypes');
-    if (!ticketTypesContainer) {
-        console.error('ticketTypes container not found');
-        return;
-    }
-    
-    if (!event.tickets || event.tickets.length === 0) {
-        console.error('No tickets available');
-        return;
-    }
-    
-    console.log('Rendering', event.tickets.length, 'ticket types');
-    ticketTypesContainer.innerHTML = '';
-    
-    event.tickets.forEach((ticket, index) => {
-        const maxQuantity = Math.min(4, ticket.stock);
-        
-        // Buat kartu tiket
-        const ticketCard = document.createElement('div');
-        ticketCard.className = 'ticket-card';
-        
-        // Buat header kartu dengan info dan kontrol jumlah
-        const cardHeader = document.createElement('div');
-        cardHeader.className = 'ticket-card-header';
-        
-        // Buat info tiket
-        const ticketInfo = document.createElement('div');
-        ticketInfo.className = 'ticket-info';
-        ticketInfo.innerHTML = `
-            <div class="ticket-type-name">${ticket.type}</div>
-            <div class="ticket-price">${formatPrice(ticket.price)}</div>
-            <div class="ticket-stock">Tersedia: ${ticket.stock} tiket | Max: 4 tiket/jenis</div>
-        `;
-        
-        // buat atur jumlah tiket
-        const quantityControl = document.createElement('div');
-        quantityControl.className = 'ticket-quantity-control';
-        
-        // Tombol kurang
-        const decreaseBtn = document.createElement('button');
-        decreaseBtn.type = 'button';
-        decreaseBtn.className = 'quantity-btn decrease-btn';
-        decreaseBtn.textContent = '-';
-        decreaseBtn.onclick = function() {
-            const currentQty = selectedTickets[index] || 0;
-            if (currentQty > 0) {
-                selectedTickets[index] = currentQty - 1;
-                quantityInput.value = selectedTickets[index];
-                updateTotalPrice();
-            }
-        };
-        
-        // Input
-        const quantityInput = document.createElement('input');
-        quantityInput.type = 'number';
-        quantityInput.className = 'quantity-input';
-        quantityInput.id = `quantity-${index}`;
-        quantityInput.value = '0';
-        quantityInput.min = '0';
-        quantityInput.max = maxQuantity;
-        quantityInput.readOnly = true;
-        
-        // Tombol tambah
-        const increaseBtn = document.createElement('button');
-        increaseBtn.type = 'button';
-        increaseBtn.className = 'quantity-btn increase-btn';
-        increaseBtn.textContent = '+';
-        increaseBtn.onclick = function() {
-            const currentQty = selectedTickets[index] || 0;
-            if (currentQty < maxQuantity) {
-                selectedTickets[index] = currentQty + 1;
-                quantityInput.value = selectedTickets[index];
-                updateTotalPrice();
-            } else if (currentQty >= 4) {
-                showToast('Maksimal 4 tiket per jenis!', 'error');
-            } else {
-                showToast('Stok tiket tidak mencukupi!', 'error');
-            }
-        };
-        
-        // Masukkan tombol dan input ke kontrol jumlah
-        quantityControl.appendChild(decreaseBtn);
-        quantityControl.appendChild(quantityInput);
-        quantityControl.appendChild(increaseBtn);
-        
-        // Masukkan ke header kartu
-        cardHeader.appendChild(ticketInfo);
-        cardHeader.appendChild(quantityControl);
-        
-        // Buat bagian benefit jika tersedia
-        if (ticket.benefits && ticket.benefits.length > 0) {
-            const benefitsDiv = document.createElement('div');
-            benefitsDiv.className = 'ticket-benefits';
-            
-            const benefitsTitle = document.createElement('div');
-            benefitsTitle.className = 'ticket-benefits-title';
-            benefitsTitle.textContent = 'Benefit yang didapat:';
-            benefitsDiv.appendChild(benefitsTitle);
-            
-            ticket.benefits.forEach(benefit => {
-                const benefitItem = document.createElement('div');
-                benefitItem.className = 'benefit-item';
-                benefitItem.textContent = benefit;
-                benefitsDiv.appendChild(benefitItem);
-            });
-            
-            ticketCard.appendChild(cardHeader);
-            ticketCard.appendChild(benefitsDiv);
-        } else {
-            ticketCard.appendChild(cardHeader);
-        }
-        
-        // masukkan ticket card ke container
-        ticketTypesContainer.appendChild(ticketCard);
-        
-        // Inisialisasi selectedTickets
-        selectedTickets[index] = 0;
-    });
-    
-    console.log('Ticket cards rendered:', ticketTypesContainer.children.length);
-}
-
-// Function untuk update total
+// Function untuk update total harga
 function updateTotalPrice() {
     if (!event || !event.tickets) return;
     
@@ -408,17 +338,17 @@ function updateTotalPrice() {
         totalPrice += ticket.price * quantity;
     });
     
-    const totalTicketsEl = document.getElementById('totalTickets');
     const totalPriceEl = document.getElementById('totalPrice');
-    
-    if (totalTicketsEl) {
-        totalTicketsEl.textContent = totalTickets;
-    }
     if (totalPriceEl) {
         totalPriceEl.textContent = formatPrice(totalPrice);
     }
     
     console.log('Total updated - Tickets:', totalTickets, 'Price:', totalPrice);
+}
+
+// Function untuk format harga
+function formatPrice(price) {
+    return 'Rp ' + price.toLocaleString('id-ID');
 }
 
 // Handler untuk tombol Beli Tiket
@@ -448,8 +378,7 @@ if (buyTicketBtn) {
                 totalTickets: totalTickets,
                 totalPrice: event.tickets.reduce((sum, ticket, index) => {
                     return sum + (ticket.price * (selectedTickets[index] || 0));
-                }, 0),
-                isGuest: !isUserLoggedIn()
+                }, 0)
             };
             localStorage.setItem('orderData', JSON.stringify(orderData));
             
@@ -459,26 +388,103 @@ if (buyTicketBtn) {
             }, 1000);
         };
         
-        if (isUserLoggedIn()) {
-            // Jika sudah login, langsung lanjut
-            proceedToCheckout();
-        } else {
-            // Jika belum login, tampilkan pilihan
-            showNotificationWithOptions(
-                'Lanjutkan Pembelian',
-                'Anda dapat login untuk mendapatkan riwayat pembelian dan penawaran khusus, atau melanjutkan sebagai guest.',
-                () => {
-                    // Pilih Login
-                    sessionStorage.setItem('redirectAfterLogin', window.location.href);
-                    window.location.href = '../auth/login.html';
-                },
-                () => {
-                    // Pilih lanjut sebagai Guest
-                    proceedToCheckout();
-                }
-            );
-        }
+        proceedToCheckout();
     });
 }
-updateNavbar();
 
+// Function untuk render ticket types dengan quantity selector per jenis
+function renderTicketTypes() {
+    const ticketTypesContainer = document.getElementById('ticketTypes');
+    if (!ticketTypesContainer) {
+        console.error('ticketTypes container not found');
+        return;
+    }
+    
+    if (!event.tickets || event.tickets.length === 0) {
+        console.error('No tickets available');
+        return;
+    }
+    
+    console.log('Rendering', event.tickets.length, 'ticket types');
+    ticketTypesContainer.innerHTML = '';
+    
+    event.tickets.forEach((ticket, index) => {
+        const maxQuantity = Math.min(10, ticket.stock);
+        
+        const ticketCard = document.createElement('div');
+        ticketCard.className = 'ticket-card';
+        
+        // Build benefits HTML if available
+        let benefitsHTML = '';
+        if (ticket.benefits && ticket.benefits.length > 0) {
+            benefitsHTML = `
+                <div class="benefits-dropdown-trigger" onclick="toggleBenefits(${index})">
+                    <span>Lihat Benefit</span>
+                    <span class="dropdown-arrow" id="arrow-${index}">▼</span>
+                </div>
+                <div class="ticket-benefits" id="benefits-${index}">
+                    <p class="ticket-benefits-title">BENEFIT YANG DIDAPAT:</p>
+                    ${ticket.benefits.map(benefit => `<div class="benefit-item">${benefit}</div>`).join('')}
+                </div>
+            `;
+        }
+        
+        ticketCard.innerHTML = `
+            <div class="ticket-card-header">
+                <div class="ticket-info">
+                    <p class="ticket-type-name">${ticket.type}</p>
+                    <p class="ticket-price">${formatPrice(ticket.price)}</p>
+                    <p class="ticket-stock">Tersedia: ${ticket.stock} tiket | Max: 10 tiket/jenis</p>
+                </div>
+                <div class="ticket-quantity-control">
+                    <button type="button" class="quantity-btn" onclick="decreaseTicket(${index})">-</button>
+                    <input type="number" class="quantity-input" id="qty-${index}" value="0" min="0" max="${maxQuantity}" readonly />
+                    <button type="button" class="quantity-btn" onclick="increaseTicket(${index}, ${maxQuantity})">+</button>
+                </div>
+            </div>
+            ${benefitsHTML}
+        `;
+        
+        ticketTypesContainer.appendChild(ticketCard);
+        
+        // Inisialisasi selectedTickets
+        selectedTickets[index] = 0;
+    });
+    
+    console.log('Ticket cards rendered:', ticketTypesContainer.children.length);
+}
+
+// Function untuk increase ticket quantity
+function increaseTicket(index, maxQuantity) {
+    const currentQty = selectedTickets[index] || 0;
+    if (currentQty < maxQuantity) {
+        selectedTickets[index] = currentQty + 1;
+        document.getElementById(`qty-${index}`).value = selectedTickets[index];
+        updateTotalPrice();
+    } else if (currentQty >= 10) {
+        showToast('Maksimal 10 tiket per jenis!', 'error');
+    } else {
+        showToast('Stok tiket tidak mencukupi!', 'error');
+    }
+}
+
+// Function untuk decrease ticket quantity
+function decreaseTicket(index) {
+    const currentQty = selectedTickets[index] || 0;
+    if (currentQty > 0) {
+        selectedTickets[index] = currentQty - 1;
+        document.getElementById(`qty-${index}`).value = selectedTickets[index];
+        updateTotalPrice();
+    }
+}
+
+// Function untuk toggle dropdown benefits
+function toggleBenefits(index) {
+    const benefitsDiv = document.getElementById(`benefits-${index}`);
+    const arrow = document.getElementById(`arrow-${index}`);
+    
+    if (benefitsDiv && arrow) {
+        benefitsDiv.classList.toggle('show');
+        arrow.textContent = benefitsDiv.classList.contains('show') ? '▲' : '▼';
+    }
+}

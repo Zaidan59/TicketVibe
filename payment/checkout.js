@@ -106,6 +106,7 @@ function setupEventListeners() {
             const name = document.getElementById('buyerName').value.trim();
             const email = document.getElementById('buyerEmail').value.trim();
             const phone = document.getElementById('buyerPhone').value.trim();
+            const nik = document.getElementById('buyerNIK').value.trim();
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
             const agreeTerms = document.getElementById('agreeTerms').checked;
             
@@ -136,6 +137,12 @@ function setupEventListeners() {
             const phoneRegex = /^[0-9]{10,13}$/;
             if (!phoneRegex.test(phone.replace(/[\s-]/g, ''))) {
                 showNotification('Nomor Tidak Valid', 'Silakan masukkan nomor telepon yang valid (10-13 digit).', 'error');
+                return;
+            }
+
+            const nikRegex = /^[0-9]{16}$/;
+            if (!nikRegex.test(nik)) {
+                showNotification('NIK Tidak Valid', 'Silakan masukkan Nomor Induk Kependudukan (NIK) yang valid (16 digit).', 'error');
                 return;
             }
             

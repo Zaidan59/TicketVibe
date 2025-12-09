@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - EVORA</title>
+    <link rel="stylesheet" href="../home/style.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="top-nav">
+        <a href="../home/index.html">
+            <div class="logo">EVORA</div>
+        </a>
+
+        <div class="search" role="search">
+            <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+            <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+        </div>
+    
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="../home/index.html#events">Browse Events</a></li>
+            <li><a href="../create/create.html">Create Event</a></li>
+            <li><a href="#about">About</a></li>
+            <li class="nav-buttons">
+                <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+                <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+            </li>
+        </ul>
+
+        <div class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Profile Container -->
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-large">
+                    <img id="avatarImage" src="https://e7.pngegg.com/pngimages/343/677/png-clipart-computer-icons-user-profile-login-my-account-icon-heroes-black-thumbnail.png" alt="Profile Avatar">
+                </div>
+                <button class="btn-change-avatar" onclick="changeAvatar()">Ubah Foto</button>
+            </div>
+            <div class="profile-info-section">
+                <h1 id="profileName">Loading...</h1>
+                <p class="profile-email" id="profileEmail">loading@email.com</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalTickets">0</div>
+                        <div class="stat-label">Tiket Dibeli</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalEvents">0</div>
+                        <div class="stat-label">Event Dihadiri</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="memberSince">2025</div>
+                        <div class="stat-label">Member Sejak</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="info" onclick="switchTab('info')">
+                📋 Informasi Akun
+            </button>
+            <button class="profile-tab" data-tab="security" onclick="switchTab('security')">
+                🔒 Keamanan
+            </button>
+            <button class="profile-tab" data-tab="preferences" onclick="switchTab('preferences')">
+                ⚙️ Preferensi
+            </button>
+        </div>
+
+        <!-- Tab Content: Info -->
+        <div class="tab-content active" id="tab-info">
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2>Informasi Pribadi</h2>
+                    <button class="btn-edit" onclick="toggleEdit()">
+                        <span id="editBtnText">✏️ Edit</span>
+                    </button>
+                </div>
+                <form class="profile-form" id="profileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap</label>
+                            <input type="text" id="fullName" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Tanggal Lahir</label>
+                        <input type="date" id="birthdate" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <textarea id="address" rows="3" disabled></textarea>
+                    </div>
+                    <div class="form-actions" id="formActions" style="display: none;">
+                        <button type="button" class="btn-cancel" onclick="cancelEdit()">Batal</button>
+                        <button type="submit" class="btn-save">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab Content: Security -->
+        <div class="tab-content" id="tab-security">
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2>Ubah Password</h2>
+                </div>
+                <form class="profile-form" id="passwordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Password Saat Ini</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="currentPassword" placeholder="Masukkan password saat ini">
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('currentPassword')">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Password Baru</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="newPassword" placeholder="Masukkan password baru">
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword')">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                        <small>Minimal 8 karakter, kombinasi huruf dan angka</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Konfirmasi Password Baru</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmPassword" placeholder="Konfirmasi password baru">
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-save">Ubah Password</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2>Sesi Login</h2>
+                </div>
+                <div class="session-list">
+                    <div class="session-item">
+                        <div class="session-icon">💻</div>
+                        <div class="session-info">
+                            <div class="session-device">Windows PC - Chrome</div>
+                            <div class="session-time">Aktif sekarang</div>
+                            <div class="session-location">📍 Jakarta, Indonesia</div>
+                        </div>
+                        <div class="session-status active">Aktif</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Preferences -->
+        <div class="tab-content" id="tab-preferences">
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2>Notifikasi</h2>
+                </div>
+                <div class="preference-list">
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <div class="preference-title">📧 Email Notifikasi</div>
+                            <div class="preference-desc">Terima notifikasi event via email</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailNotif" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <div class="preference-title">🔔 Push Notifikasi</div>
+                            <div class="preference-desc">Terima notifikasi real-time</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="pushNotif" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <div class="preference-title">🎉 Promo & Event Baru</div>
+                            <div class="preference-desc">Dapatkan info promo dan event terbaru</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="promoNotif" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2>Bahasa & Zona Waktu</h2>
+                </div>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="language">Bahasa</label>
+                        <select id="language">
+                            <option value="id" selected>Bahasa Indonesia</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Zona Waktu</label>
+                        <select id="timezone">
+                            <option value="WIB" selected>WIB (Jakarta)</option>
+                            <option value="WITA">WITA (Bali)</option>
+                            <option value="WIT">WIT (Papua)</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-save">Simpan Preferensi</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="profile-card danger-zone">
+                <div class="card-header">
+                    <h2>⚠️ Zona Berbahaya</h2>
+                </div>
+                <div class="danger-actions">
+                    <button class="btn-danger" onclick="deactivateAccount()">
+                        Nonaktifkan Akun
+                    </button>
+                    <button class="btn-danger" onclick="deleteAccount()">
+                        Hapus Akun Permanen
+                    </button>
+                </div>
+                <p class="danger-warning">
+                    ⚠️ Tindakan ini tidak dapat dibatalkan. Data Anda akan dihapus permanen.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 EVORA — All rights reserved.</p>
+    </footer>
+
+    <script src="../home/common.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

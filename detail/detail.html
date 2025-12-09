@@ -3,25 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detail Event - TicketVibe</title>
+    <title>Detail Event - Evora</title>
     <link rel="stylesheet" href="../home/style.css" />
     <link rel="stylesheet" href="detail.css" />
   </head>
   <body>
-    <!-- navbar -->
+    <!-- Navbar -->
     <nav class="top-nav">
       <a href="../home/index.html">
-      <div class="logo">TicketVibe</div>
+      <div class="logo">EVORA</div>
       </a>
+
       <div class="search" role="search">
         <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
         <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
       </div>
-
-      <div class="nav-links">
-        <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
-        <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
-      </div>
+    
+      <ul class="nav-menu" id="navMenu">
+          <li><a href="#events">Browse Events</a></li>
+          <li><a href="../create/create.html">Create Event</a></li>
+          <li><a href="#about">About</a></li>
+          <li class="nav-buttons">
+            <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+            <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+          </li>
+      </ul>
 
       <div class="hamburger" aria-hidden="true">
         <span></span>
@@ -30,99 +36,191 @@
       </div>
     </nav>
 
-    <main>
-      <div class="back-button-container">
-        <a href="../home/index.html" class="btn-back">← Kembali</a>
-      </div>
-
       <!-- event detail -->
-      <section class="event-detail" id="event-detail">
-        <div class="detail-container">
+      <main class="detail-container">
+        <div class="detail-content">
+          <!-- Left Section - All in one container -->
           <div class="detail-left">
-            <div class="detail-image">
-              <img id="detail-img" src="" alt="Event Image">
-              <span class="detail-category" id="detail-category"></span>
+            <!-- Event Header -->
+            <div class="event-header">
+              <span class="event-category" id="detail-category"></span>
+              <h1 class="event-title" id="detail-title"></h1>
             </div>
-            
-            <h1 class="detail-title" id="detail-title"></h1>
-            <p class="detail-artist" id="detail-artist"></p>
-            
-            <div class="detail-info-grid">
+
+            <!-- Event Image -->
+            <div class="event-image-main">
+              <img id="detail-img" src="" alt="Event Image" />
+            </div>
+            <div class="event-gallery" id="event-gallery">
+              <!-- Gallery thumbnails akan digenerate oleh JavaScript -->
+            </div>
+            <div class="event-organizer">
+                <img id="organizer-avatar" src="" alt="Organizer" />
+                <div>
+                  <p class="organizer-label">Diselenggarakan oleh</p>
+                  <p class="organizer-name" id="detail-artist"></p>
+                </div>
+              </div>
+            <!-- Event Info Section -->
+            <div class="event-info-section">
               <div class="info-item">
                 <span class="info-icon">📅</span>
                 <div>
-                  <p class="info-label">Tanggal</p>
+                  <p class="info-label">Tanggal & Waktu</p>
                   <p class="info-value" id="detail-date"></p>
+                  <p class="info-subvalue" id="detail-time"></p>
                 </div>
               </div>
-              
+
               <div class="info-item">
                 <span class="info-icon">📍</span>
                 <div>
                   <p class="info-label">Lokasi</p>
                   <p class="info-value" id="detail-location"></p>
+                  <p class="info-subvalue" id="detail-address"></p>
                 </div>
               </div>
-              
+
               <div class="info-item">
-                <span class="info-icon">💰</span>
+                <span class="info-icon">🎫</span>
                 <div>
-                  <p class="info-label">Harga Mulai Dari</p>
-                  <p class="info-value" id="detail-price"></p>
+                  <p class="info-label">Tersedia</p>
+                  <p class="info-value" id="detail-available"></p>
+                  <p class="info-subvalue" id="detail-total"></p>
                 </div>
               </div>
             </div>
-            
-            <div class="detail-description">
-              <h3>Tentang Event</h3>
+
+            <!-- Event Description -->
+            <div class="event-description">
+              <h2>Tentang Event</h2>
               <p id="detail-desc"></p>
-            </div>
-            
-            <div class="detail-terms">
-              <h3>Syarat & Ketentuan</h3>
-              <ul class="terms-list">
-                <li>Tiket yang sudah dibeli tidak dapat dikembalikan atau ditukar</li>
-                <li>Pembeli wajib membawa identitas diri (KTP/SIM/Paspor) yang sesuai dengan nama pada tiket</li>
-                <li>Dilarang membawa makanan dan minuman dari luar area venue</li>
-                <li>Pengunjung wajib menjaga ketertiban dan keamanan selama acara berlangsung</li>
-                <li>Panitia berhak menolak atau mengeluarkan pengunjung yang melanggar aturan</li>
-                <li>Anak di bawah 12 tahun wajib didampingi orang tua/wali</li>
-                <li>Dilarang membawa barang berbahaya, senjata tajam, atau bahan yang mudah terbakar</li>
-                <li>Jadwal acara dapat berubah sewaktu-waktu sesuai kebijakan penyelenggara</li>
+              
+              <h3>Yang Akan Anda Dapatkan:</h3>
+              <ul id="event-benefits">
+                <!-- Benefits akan digenerate oleh JavaScript -->
               </ul>
             </div>
           </div>
           
-          <div class="detail-content">
-            <!-- Bagian Pemilihan Tiket -->
-            <div class="ticket-selection-container">
+          <!-- Right Section - Ticket Selection Only -->
+          <div class="detail-right">
+            <div class="ticket-selection">
               <h3>Pilih Tiket</h3>
-              <div class="ticket-types" id="ticketTypes">
-                <!-- jenis tiket digenerate oleh JavaScript -->
+              <div class="ticket-options" id="ticketTypes">
+                <!-- Ticket options akan digenerate oleh JavaScript -->
               </div>
-              <div class="ticket-summary">
-                <div class="summary-row">
-                  <span class="summary-label">Total Tiket:</span>
-                  <span class="summary-value" id="totalTickets">0</span>
-                </div>
-                <div class="summary-row total-price-row">
-                  <span class="summary-label">Total Harga:</span>
-                  <span class="summary-value" id="totalPrice">Rp 0</span>
-                </div>
-              </div>
-            </div>
 
-            <div class="detail-actions">
-              <button class="btn-buy-ticket" id="buyTicketBtn">Beli Tiket Sekarang</button>
+              <div class="total-price">
+                <p>Total Harga</p>
+                <h2 id="totalPrice">Rp 0</h2>
+              </div>
+
+              <button class="btn-buy" id="buyTicketBtn">Beli Tiket Sekarang</button>
             </div>
           </div>
         </div>
-      </section>
-    </main>     
+
+        <!-- Terms & Conditions-->
+        <div class="event-terms">
+          <h3>Syarat & Ketentuan Umum</h3>
+          
+          <h4 style="margin-top: 25px; color: #006666;">1. Pembelian & Pembayaran</h4>
+          <ul>
+            <li>📌 Tiket hanya dapat dibeli melalui platform EVORA</li>
+            <li>📌 Pembayaran wajib dilakukan sepenuhnya sebelum tiket dikirimkan</li>
+            <li>📌 Invoice akan dikirimkan melalui email yang terdaftar</li>
+            <li>📌 EVORA menerima berbagai metode pembayaran: Transfer Bank, E-wallet, Kartu Kredit</li>
+            <li>📌 Biaya admin dan pajak sudah termasuk dalam harga tiket</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">2. Kebijakan Pembatalan & Pengembalian Dana</h4>
+          <ul>
+            <li>📌 Tiket yang sudah dibeli tidak dapat ditukar atau dikembalikan uangnya</li>
+            <li>📌 Pembatalan hanya dilakukan jika event dibatalkan oleh penyelenggara</li>
+            <li>📌 Dalam hal pembatalan event, pengembalian dana 100% akan diproses dalam 14 hari kerja</li>
+            <li>📌 Jika event dimulai lebih lambat atau lebih cepat, tiket tetap berlaku</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">3. Penggunaan Tiket</h4>
+          <ul>
+            <li>📌 Tunjukkan e-ticket (digital) atau QR code asli saat memasuki venue</li>
+            <li>📌 Satu tiket hanya berlaku untuk satu orang, tidak dapat dialihkan</li>
+            <li>📌 Tiket hanya berlaku pada tanggal dan waktu yang tertera</li>
+            <li>📌 Jangan share atau upload QR code ke media sosial atau platform publik</li>
+            <li>📌 Tiket yang rusak atau tidak terbaca tidak dapat diganti</li>
+            <li>📌 Pastikan datang minimal 30 menit sebelum event dimulai</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">4. Akses & Peraturan Venue</h4>
+          <ul>
+            <li>📌 Peserta wajib mematuhi semua peraturan yang berlaku di venue</li>
+            <li>📌 Dress code: Smart Casual (tidak diperbolehkan sandal jepit dan tank top)</li>
+            <li>📌 Anak di bawah 12 tahun wajib didampingi orangtua/wali minimal satu orang dewasa</li>
+            <li>📌 Dilarang membawa alkohol, minuman beralkohol, dan obat-obatan terlarang</li>
+            <li>📌 Dilarang membawa makanan dan minuman dari luar (kecuali air putih)</li>
+            <li>📌 Dilarang membawa barang-barang berbahaya seperti senjata tajam, benda api, dan sejenisnya</li>
+            <li>📌 Penyelenggara berhak mengeluarkan peserta yang melanggar peraturan tanpa pengembalian dana</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">5. Hak Cipta & Konten</h4>
+          <ul>
+            <li>📌 Penyelenggara berhak mengabadikan event dalam bentuk foto, video, dan/atau rekaman</li>
+            <li>📌 Peserta setuju atas penggunaan citra diri dalam dokumentasi event untuk keperluan promosi</li>
+            <li>📌 Jika keberatan, mohon sampaikan sebelum event dimulai kepada panitia</li>
+            <li>📌 Peserta diperbolehkan mengambil foto/video untuk keperluan pribadi (bukan komersial)</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">6. Keselamatan & Kesehatan</h4>
+          <ul>
+            <li>📌 Peserta menyatakan dalam kondisi kesehatan yang baik dan mampu mengikuti event</li>
+            <li>📌 Peserta dengan kondisi medis tertentu diminta memberitahu panitia sebelum event</li>
+            <li>📌 Penyelenggara tidak bertanggung jawab atas kecelakaan atau cedera peserta</li>
+            <li>📌 Venue telah dilengkapi dengan fasilitas first aid dan staf medis</li>
+            <li>📌 Peserta wajib mengikuti protokol kesehatan dan keselamatan yang berlaku</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">7. Tanggung Jawab & Asuransi</h4>
+          <ul>
+            <li>📌 Penyelenggara tidak bertanggung jawab atas kehilangan, kerusakan, atau pencurian barang bawaan peserta</li>
+            <li>📌 Peserta disarankan meninggalkan barang berharga di rumah atau menggunakan security bag</li>
+            <li>📌 Penyelenggara tidak menanggung biaya asuransi perjalanan atau kesehatan peserta</li>
+            <li>📌 Peserta adalah tanggung jawab sendiri untuk mengasuransikan keperluan pribadi</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">8. Perubahan & Pembatalan Event</h4>
+          <ul>
+            <li>📌 Penyelenggara berhak mengubah jadwal, lineup artis, atau lokasi jika ada keadaan force majeure</li>
+            <li>📌 Notifikasi perubahan akan diinformasikan melalui email dan website EVORA minimal 7 hari sebelumnya</li>
+            <li>📌 Jika peserta menolak perubahan, dapat meminta pengembalian dana 100%</li>
+            <li>📌 Pembatalan event karena alasan kurang peserta tidak termasuk alasan force majeure</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">9. Layanan Pelanggan & Keluhan</h4>
+          <ul>
+            <li>📌 Peserta dapat menghubungi customer service EVORA untuk pertanyaan sebelum event</li>
+            <li>📌 Keluhan atau komplain wajib disampaikan maksimal 7 hari setelah event</li>
+            <li>📌 Tim EVORA akan merespons dalam waktu 3x24 jam</li>
+            <li>📌 Penyelesaian keluhan dilakukan sesuai dengan bukti dan kebijakan yang berlaku</li>
+          </ul>
+
+          <h4 style="margin-top: 25px; color: #006666;">10. Hukum & Yurisdiksi</h4>
+          <ul>
+            <li>📌 Syarat dan ketentuan ini berlaku sesuai hukum Republik Indonesia</li>
+            <li>📌 Segala perselisihan akan diselesaikan melalui musyawarah dan mediasi</li>
+            <li>📌 Jika tidak tercapai kesepakatan, penyelesaian dilakukan di pengadilan yang berwenang</li>
+          </ul>
+
+          <div style="margin-top: 30px; padding: 20px; background: #f5f9f9; border-radius: 10px; border-left: 4px solid #006666;">
+            <p style="font-weight: 600; color: #006666; margin-bottom: 10px;">⚠️ Persetujuan</p>
+            <p style="margin: 0; font-size: 14px; color: #444;">Dengan membeli tiket event melalui platform EVORA, Anda telah membaca, memahami, dan setuju untuk terikat oleh semua syarat dan ketentuan di atas.</p>
+          </div>
+        </div>
+      </main>     
 
     <!-- footer -->
     <footer>
-      <p>© 2025 TicketVibe — All rights reserved.</p>
+      <p>© 2025 Evora — All rights reserved.</p>
     </footer>
     
     <script src="../home/common.js"></script>

@@ -3,25 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TicketVibe</title>
+    <title>EVORA</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Navbar -->
     <nav class="top-nav">
-      <a href="index.html">
-      <div class="logo">TicketVibe</div>
+      <a href="../home/index.html">
+      <div class="logo">EVORA</div>
       </a>
 
       <div class="search" role="search">
         <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
         <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
       </div>
-
-      <div class="nav-links">
-        <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
-        <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
-      </div>
+    
+      <ul class="nav-menu" id="navMenu">
+          <li><a href="#events">Browse Events</a></li>
+          <li><a href="../create/create.html">Create Event</a></li>
+          <li><a href="../about/about.html">About</a></li>
+          <li class="nav-buttons">
+            <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+            <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+          </li>
+      </ul>
 
       <div class="hamburger" aria-hidden="true">
         <span></span>
@@ -33,12 +38,11 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-content">
-        <h1>Temukan Konser Terbaik di Sekitarmu</h1>
+        <h1>Temukan Event Terbaik di Sekitarmu</h1>
         <p>
-          Beli tiket konser favoritmu dan jelajahi event musik paling hype tahun
+          Beli tiket event favoritmu dan jelajahi event paling hype tahun
           ini.
         </p>
-        <a class="btn-hero" href="#events">Jelajahi Event</a>
       </div>
     </section>
 
@@ -47,14 +51,37 @@
     <h2 class="section-title">Trending Events</h2>
     <div class="event" id="trending-events"></div>
 
+    <!-- Carousel Event -->
+    <div id="carousel-event" class="carousel-event"></div>
+
+    <!-- Category Filter -->
+    <div class="category-filter-section">
+      <h2 class="section-title">Browse by Category</h2>
+      <div class="category-filter">
+        <button class="category-btn active" data-category="all">All Events</button>
+        <button class="category-btn" data-category="musical">Concert</button>
+        <button class="category-btn" data-category="workshop">Workshop</button>
+        <button class="category-btn" data-category="sports">Sports</button>
+        <button class="category-btn" data-category="art">Art & Exhibition</button>
+        <button class="category-btn" data-category="food">Food Festival</button>
+      </div>
+    </div>
+
+    <!-- All Events (filtered) -->
+    <h2 id="events" class="section-title">All Events</h2>
+    <div class="event" id="all-events"></div>
+
     <!-- Konser Events -->
-    <h2 id="events" class="section-title">Konser Events</h2>
-    <div class="event" id="konser-events"></div>
+    <h2 id="events" class="section-title" style="display: none;">Concert Events</h2>
+    <div class="event" id="konser-events" style="display: none;"></div>
+
+    <h2 id="events" class="section-title" style="display: none;">Educational Events</h2>
+    <div class="event" id="education-events" style="display: none;"></div>
 
     </main>
     <!-- Footer -->
     <footer>
-      <p>© 2025 TicketVibe — All rights reserved.</p>
+      <p>© 2025 EVORA — All rights reserved.</p>
     </footer>
     <script src="common.js"></script>
     <script src="script.js"></script>

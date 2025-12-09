@@ -130,9 +130,10 @@ function togglePasswordVisibility(inputId) {
     
     if (input.type === 'password') {
         input.type = 'text';
-        eyeIcon.textContent = '🙈';
+        eyeIcon.textContent = 'Hide';
+        eyeIcon.style.color = '#1f1f1f';
     } else {
         input.type = 'password';
-        eyeIcon.textContent = '👁️';
+        eyeIcon.textContent = 'Show';
     }
 }

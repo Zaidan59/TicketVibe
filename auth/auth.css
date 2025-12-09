@@ -6,7 +6,7 @@
 
 body {
     font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #020022 0%, #1a0f3d 50%, #2e288b 100%);
+    background: linear-gradient(135deg, #006666 50%, #221f4e);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@ body {
 
 /* Auth */
 .auth-box {
-    background: rgba(21, 21, 28, 0.9);
+    background: #f1f1f1;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 40px;
@@ -32,7 +32,7 @@ body {
 
 .back-link {
     display: inline-block;
-    color: #a0a0b0;
+    color: #1f1f1f;
     text-decoration: none;
     font-size: 14px;
     margin-bottom: 20px;
@@ -50,16 +50,19 @@ body {
 
 /* Form */
 .logo {
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 700;
     letter-spacing: 1px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #221f4e;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 16px;
 }
 
+.logo-caption {
+    color: #006666;
+}
 .auth-header h2 {
     font-size: 24px;
     font-weight: 600;
@@ -67,12 +70,12 @@ body {
 }
 
 .auth-header p {
-    color: #a0a0b0;
+    color: #6f6f7a;
     font-size: 14px;
 }
 
 .link {
-    color: #667eea;
+    color: hsl(229, 76%, 50%);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
@@ -97,28 +100,26 @@ body {
 .form-group label {
     font-size: 14px;
     font-weight: 500;
-    color: #e0e0e0;
+    color: #1f1f1f;
 }
 
 .form-group input {
     width: 100%;
     padding: 12px 16px;
-    background: rgba(38, 38, 49, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: hsla(230, 15%, 80%, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 8px;
-    color: #fff;
     font-size: 14px;
     transition: all 0.3s;
 }
 
 .form-group input:focus {
-    outline: none;
+    outline: #221f4e;
     border-color: #667eea;
-    background: rgba(38, 38, 49, 1);
 }
 
 .form-group input::placeholder {
-    color: #6a6a7a;
+    color: #5d5d6d;
 }
 
 /* Password */
@@ -153,7 +154,7 @@ body {
 }
 
 .eye-icon {
-    font-size: 20px;
+    font-size: 12px;
     line-height: 1;
     filter: grayscale(100%);
     opacity: 0.7;
@@ -188,10 +189,11 @@ body {
 
 .checkbox-label span {
     user-select: none;
+    color: #1f1f1f;
 }
 
 .forgot-link {
-    color: #667eea;
+    color: #1f3cc0;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
@@ -204,7 +206,7 @@ body {
 .btn-submit {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(125deg, #006666 50%, #221f4e);
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -241,9 +243,8 @@ body {
 
 .divider span {
     position: relative;
-    background: rgba(21, 21, 28, 0.9);
     padding: 0 16px;
-    color: #a0a0b0;
+    color: #1f1f1f;
     font-size: 14px;
 }
 

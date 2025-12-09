@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - TicketVibe</title>
+    <title>Checkout - Evora</title>
     <link rel="stylesheet" href="../home/style.css" />
     <link rel="stylesheet" href="checkout.css" />
   </head>
@@ -11,11 +11,20 @@
     <!-- Navbar -->
     <nav class="top-nav">
       <a href="../home/index.html">
-        <div class="logo">TicketVibe</div>
+        <div class="logo">EVORA</div>
       </a>
-      <div class="nav-links">
-        <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
-        <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+    
+      <ul class="nav-menu" id="navMenu">
+          <li class="nav-buttons">
+            <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
+            <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
+          </li>
+      </ul>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
 
@@ -69,6 +78,11 @@
           <div class="form-group">
             <label for="buyerPhone">Nomor Telepon <span class="required">*</span></label>
             <input type="tel" id="buyerPhone" name="buyerPhone" placeholder="08xxxxxxxxxx" required />
+          </div>
+
+          <div class="form-group">
+            <label for="buyerNIK">Nomor Induk Kependudukan (NIK) <span class="required">*</span></label>
+            <input type="text" id="buyerNIK" name="buyerNIK" placeholder="Masukkan NIK" required />
           </div>
         </form>
       </section>
@@ -139,7 +153,7 @@
 
     <!-- Footer -->
     <footer>
-      <p>© 2025 TicketVibe — All rights reserved.</p>
+      <p>© 2025 Evora — All rights reserved.</p>
     </footer>
 
     <script src="../home/common.js"></script>

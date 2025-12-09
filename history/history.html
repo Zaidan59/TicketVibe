@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Pembelian - TicketVibe</title>
+    <title>Riwayat Pembelian - Evora</title>
     <link rel="stylesheet" href="../home/style.css">
     <link rel="stylesheet" href="history.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="top-nav">
-        <a href="../home/index.html">
-            <div class="logo">TicketVibe</div>
-        </a>
-        <div class="nav-links">
+      <a href="../home/index.html">
+      <div class="logo">EVORA</div>
+      </a>
+
+      <div class="search" role="search">
+        <input type="search" name="q" placeholder="Cari konser, lokasi..." aria-label="Cari" />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+      </div>
+    
+      <ul class="nav-menu" id="navMenu">
+          <li><a href="#events">Browse Events</a></li>
+          <li><a href="../create/create.html">Create Event</a></li>
+          <li><a href="#about">About</a></li>
+          <li class="nav-buttons">
             <a href="../auth/login.html"><button class="btn-login" aria-label="Masuk">Masuk</button></a>
             <a href="../auth/register.html"><button class="btn-signup" aria-label="Daftar">Daftar</button></a>
-        </div>
+          </li>
+      </ul>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
 
     <main class="history-container">
@@ -33,7 +50,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 TicketVibe — All rights reserved.</p>
+        <p>© 2025 Evora — All rights reserved.</p>
     </footer>
 
     <script src="../home/common.js"></script>

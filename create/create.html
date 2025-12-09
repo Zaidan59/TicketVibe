@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Buat Event - Evora</title>
+    <link rel="stylesheet" href="../home/style.css" />
+    <link rel="stylesheet" href="create.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="top-nav">
+      <a href="../home/index.html">
+        <div class="logo">EVORA</div>
+      </a>
+
+      <div class="search" role="search">
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari konser, lokasi..."
+          aria-label="Cari"
+        />
+        <button type="submit" class="search-btn" aria-label="Cari">🔍</button>
+      </div>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="../home/index.html#events">Browse Events</a></li>
+        <li><a href="../create/create.html">Create Event</a></li>
+        <li><a href="../home/index.html#about">About</a></li>
+        <li class="nav-buttons">
+          <a href="../auth/login.html"
+            ><button class="btn-login" aria-label="Masuk">Masuk</button></a
+          >
+          <a href="../auth/register.html"
+            ><button class="btn-signup" aria-label="Daftar">Daftar</button></a
+          >
+        </li>
+      </ul>
+
+      <div class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <!-- Create Event Section -->
+    <main class="create-event-container">
+      <div class="create-event-header">
+        <h1>Buat Event Impian Anda</h1>
+        <p>Bagikan pengalaman unik dengan komunitas EVORA</p>
+      </div>
+
+      <form id="eventForm" class="event-form">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step active" data-step="1">
+            <span class="step-number">1</span>
+            <span class="step-label">Informasi Dasar</span>
+          </div>
+          <div class="step" data-step="2">
+            <span class="step-number">2</span>
+            <span class="step-label">Detail Event</span>
+          </div>
+          <div class="step" data-step="3">
+            <span class="step-number">3</span>
+            <span class="step-label">Tiket & Harga</span>
+          </div>
+          <div class="step" data-step="4">
+            <span class="step-number">4</span>
+            <span class="step-label">Ulasan & Kirim</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Informasi Dasar -->
+        <div class="form-step active" id="step-1">
+          <h2>Informasi Dasar Event</h2>
+
+          <div class="form-group">
+            <label for="eventName">Nama Event *</label>
+            <input
+              type="text"
+              id="eventName"
+              name="eventName"
+              placeholder="Masukkan nama event"
+              required
+            />
+            <small
+              >Contoh: Jazz Night Jakarta, Workshop Digital Marketing</small
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="category">Kategori Event *</label>
+              <select id="category" name="category" required>
+                <option value="">Pilih Kategori</option>
+                <option value="musik">🎵 Musik & Konser</option>
+                <option value="workshop">💼 Workshop & Training</option>
+                <option value="olahraga">⚽ Olahraga</option>
+                <option value="seni">🎨 Seni & Budaya</option>
+                <option value="kuliner">🍔 Kuliner</option>
+                <option value="teknologi">💻 Teknologi</option>
+                <option value="bisnis">📊 Bisnis & Networking</option>
+                <option value="lainnya">📌 Lainnya</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="organizer">Nama Penyelenggara *</label>
+              <input
+                type="text"
+                id="organizer"
+                name="organizer"
+                placeholder="Nama organisasi atau nama Anda"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Deskripsi Event *</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              placeholder="Jelaskan event Anda secara detail, apa yang akan dilakukan, siapa target audience, dll"
+              required
+            ></textarea>
+            <small>Minimal 50 karakter, maksimal 1000 karakter</small>
+          </div>
+
+          <div class="form-group">
+            <label for="eventImage">Gambar Event *</label>
+            <div class="image-upload">
+              <input
+                type="file"
+                id="eventImage"
+                name="eventImage"
+                accept="image/*"
+                required
+              />
+              <div class="upload-preview" id="imagePreview">
+                <span>📸 Pilih Gambar</span>
+              </div>
+            </div>
+            <small>Format: JPG, PNG (Max 5MB)</small>
+          </div>
+
+          <button type="button" class="btn-next" onclick="nextStep(1)">
+            Lanjutkan →
+          </button>
+        </div>
+
+        <!-- Step 2: Detail Event -->
+        <div class="form-step" id="step-2">
+          <h2>Detail Event</h2>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="eventDate">Tanggal Event *</label>
+              <input type="date" id="eventDate" name="eventDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="eventTime">Waktu Mulai *</label>
+              <input type="time" id="eventTime" name="eventTime" required />
+            </div>
+
+            <div class="form-group">
+              <label for="eventEndTime">Waktu Selesai *</label>
+              <input
+                type="time"
+                id="eventEndTime"
+                name="eventEndTime"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Lokasi Event *</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Nama tempat/venue"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="locationDetail">Alamat Detail *</label>
+            <input
+              type="text"
+              id="locationDetail"
+              name="locationDetail"
+              placeholder="Jalan, nomor, kelurahan, kota"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">Kota *</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Kota"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="postalCode">Kode Pos</label>
+              <input
+                type="text"
+                id="postalCode"
+                name="postalCode"
+                placeholder="Kode pos"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="capacity">Kapasitas Peserta *</label>
+            <input
+              type="number"
+              id="capacity"
+              name="capacity"
+              min="1"
+              placeholder="Jumlah tiket tersedia"
+              required
+            />
+          </div>
+
+          <div class="form-buttons">
+            <button type="button" class="btn-prev" onclick="prevStep(2)">
+              ← Kembali
+            </button>
+            <button type="button" class="btn-next" onclick="nextStep(2)">
+              Lanjutkan →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Tiket & Harga -->
+        <div class="form-step" id="step-3">
+          <h2>Tiket & Harga</h2>
+
+          <div id="ticketContainer" class="ticket-container">
+            <div class="ticket-item">
+              <h4>Tiket #1</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nama Tiket *</label>
+                  <input
+                    type="text"
+                    class="ticket-name"
+                    placeholder="Contoh: Early Bird, Regular, VIP"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Harga (Rp) *</label>
+                  <input
+                    type="number"
+                    class="ticket-price"
+                    min="0"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Kuota *</label>
+                  <input
+                    type="number"
+                    class="ticket-quota"
+                    min="1"
+                    placeholder="Jumlah tiket"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Deskripsi Tiket</label>
+                <input
+                  type="text"
+                  class="ticket-desc"
+                  placeholder="Contoh: Akses area VIP, welcome drink"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add-ticket" onclick="addTicket()">
+            + Tambah Tiket
+          </button>
+
+          <div class="form-buttons">
+            <button type="button" class="btn-prev" onclick="prevStep(3)">
+              ← Kembali
+            </button>
+            <button type="button" class="btn-next" onclick="nextStep(3)">
+              Lanjutkan →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Ulasan & Kirim -->
+        <div class="form-step" id="step-4">
+          <h2>Ulasan Event</h2>
+          <p class="review-intro">
+            Periksa kembali informasi event Anda sebelum mengirim
+          </p>
+
+          <div class="review-container" id="reviewContainer">
+            <!-- Review content akan diisi oleh JavaScript -->
+          </div>
+
+          <div class="terms-checkbox">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
+            <label for="agreeTerms">
+              Saya telah membaca dan setuju dengan
+              <a href="#" target="_blank">Syarat & Ketentuan</a> EVORA
+            </label>
+          </div>
+
+          <div class="form-buttons">
+            <button type="button" class="btn-prev" onclick="prevStep(4)">
+              ← Kembali
+            </button>
+            <button type="submit" class="btn-submit">✓ Kirim Event</button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>EVORA</h3>
+          <p>
+            Platform event terlengkap untuk menemukan dan membuat event impian
+            Anda.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Jelajahi</h3>
+          <ul>
+            <li><a href="#">Event Musik</a></li>
+            <li><a href="#">Workshop</a></li>
+            <li><a href="#">Olahraga</a></li>
+            <li><a href="#">Seni & Budaya</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Perusahaan</h3>
+          <ul>
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Karir</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Bantuan</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Hubungi Kami</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 EVORA. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../home/common.js"></script>
+    <script src="create.js"></script>
+  </body>
+</html>
