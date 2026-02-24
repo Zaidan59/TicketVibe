@@ -85,17 +85,8 @@ cd TicketVibe
 
 ### 3. Jalankan Website
 
-Buka file `home/index.html` di browser favorit Anda, atau gunakan Live Server extension di VS Code.
+Buka file `home/index.html` di browser favorit Anda.
 
-### Alternatif dengan Live Server:
-
-```bash
-# Install live-server secara global (jika belum)
-npm install -g live-server
-
-# Jalankan di folder project
-live-server
-```
 
 ## 🎬 Cara Menggunakan Aplikasi
 
@@ -155,43 +146,3 @@ Website dirancang untuk memberikan pengalaman terbaik di berbagai perangkat:
 - ✅ Penyimpanan data lokal menggunakan LocalStorage
 - ✅ Session management untuk user authentication
 - ✅ Secure checkout process
-
-## 🌐 Demo
-
-Kunjungi website: [TicketVibe Live Demo](https://zaidan59.github.io/TicketVibe/)
-
-## 📬 Kontak & Support
-
-Untuk pertanyaan, saran, atau dukungan:
-- 🌐 GitHub: [@Zaidan59](https://github.com/Zaidan59)
-- 📧 Email: Hubungi melalui GitHub Issues
-
-## 🤝 Kontribusi
-
-Kontribusi selalu diterima! Jika Anda ingin berkontribusi:
-
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
-
-## 📝 Lisensi
-
-© 2026 TicketVibe. All rights reserved.
-
-## 🙏 Acknowledgments
-
-- Design inspiration dari platform ticketing modern
-- Image assets dari [Unsplash](https://unsplash.com)
-- Icons dan fonts dari berbagai sumber open source
-
----
-
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/Zaidan59">Zaidan</a>
-</p>
-
-<p align="center">
-  <strong>TicketVibe</strong> - Temukan konser terbaik di sekitarmu! 🎵
-</p>
